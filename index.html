@@ -15,18 +15,26 @@
   </head>
   <body style="background-color: grey">
     <div class="container">
-      <h1>CODE ROT 13</h1>
-
+      <h1>“Szyfr Cezara”</h1>
+      <p>
+        Szyfr Cezara szyfr przesuwający to prosta i popularna technika
+        szyfrowania danych. Opiera się o przesunięcie liter w Alfabecie obecnie
+        używa się przesunięcia o 13 liter - ROT13
+      </p>
       <form id="form" action="/" method="GET">
         <div class="mb-3">
-          <label for="name" class="form-label">###</label>
+          <label for="name" class="form-label">Wprowadz dane</label>
           <textarea class="form-control" id="name" rows="3"></textarea>
         </div>
 
         <button class="btn btn-success" type="submit">ENCYPRET</button>
       </form>
-
-      <p class="h1" id="out"></p>
+      <!-- <p class=""></p> -->
+      <!-- <p class="h1" ></p> -->
+      <div id="box" style="display: none">
+        <p>Zaszyfrowane Dane do zaszyfrowania</p>
+        <div id="out" class="alert alert-success" role="alert"></div>
+      </div>
     </div>
   </body>
 </html>
