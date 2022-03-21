@@ -1,12 +1,11 @@
-import casar13 from './caser13';
-
+import casar13 from './caser13.js';
 const name = document.getElementById('name');
 const out = document.getElementById('out');
 const form = document.getElementById('form');
+console.log(form);
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  console.log(typeof name.value);
-
-  out.innerHTML = casar13(name.value);
+  let output = casar13(name.value);
+  out.innerHTML = output;
 });
