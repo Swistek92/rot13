@@ -6,7 +6,7 @@ const Encryption = (input) => {
   const hashed = [];
 
   word.forEach((letter) => {
-    if (letter.match(/[0-9]/g)) {
+    if (!alphabetLow.includes(letter) && !alphabetUpp.includes(letter)) {
       hashed.push(letter);
     } else if (letter === letter.toUpperCase()) {
       let currIndex = alphabetUpp.indexOf(letter) + 13;
