@@ -8,11 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "caniuse-lite": "^1.0.30001319"
-  },
-  "devDependencies": {
-    "parcel": "^2.3.2"
-  }
+  "license": "ISC"
 }

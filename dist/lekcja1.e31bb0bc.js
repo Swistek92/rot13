@@ -117,8 +117,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"modules.js":[function(require,module,exports) {
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+})({"logic/Encryption.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -132,44 +137,206 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-var name = document.getElementById('name');
-var out = document.getElementById('out');
-var form = document.getElementById('form');
+var Encryption = function Encryption(input) {
+  var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-var casar13 = function casar13(input) {
-  var alphabet = _toConsumableArray('abcdefghijklmnopqrstuvwxyz');
+  var alphabetLow = _toConsumableArray(alphabet);
 
-  var newArr = [];
-  console.log(newArr);
-  console.log(alphabet.length);
-  var word = input.toLowerCase().split('');
-  console.log(word);
+  var alphabetUpp = _toConsumableArray(alphabet.toUpperCase());
+
+  var word = input.split('');
+  var hashed = [];
   word.forEach(function (letter) {
-    if (letter.match(/[0-9]/g)) {
-      console.log('find a number');
-      newArr.push(letter);
-    } else {
-      var currIndex = alphabet.indexOf(letter) + 13;
+    if (!alphabetLow.includes(letter) && !alphabetUpp.includes(letter)) {
+      hashed.push(letter);
+    } else if (letter === letter.toUpperCase()) {
+      var currIndex = alphabetUpp.indexOf(letter) + 13;
 
-      if (currIndex > 26) {
+      if (currIndex >= 26) {
         currIndex = currIndex - 26;
       }
 
-      newArr.push(alphabet[currIndex]);
+      hashed.push(alphabetUpp[currIndex]);
+    } else {
+      var _currIndex = alphabetLow.indexOf(letter) + 13;
+
+      if (_currIndex >= 26) {
+        _currIndex = _currIndex - 26;
+      }
+
+      hashed.push(alphabetLow[_currIndex]);
     }
   });
-  console.log('wordddd', word);
-  console.log('new arr', newArr); // console.log(word);
-
-  return newArr.join('');
+  return hashed.join('');
 };
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-  console.log(_typeof(name.value));
-  out.innerHTML = casar13(name.value);
+var _default = Encryption;
+exports.default = _default;
+},{}],"logic/Decryption.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-},{}],"../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+exports.default = void 0;
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var Decryption = function Decryption(input) {
+  var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+  var alphabetLow = _toConsumableArray(alphabet);
+
+  var alphabetUpp = _toConsumableArray(alphabet.toUpperCase());
+
+  var word = input.split('');
+  var hashed = [];
+  word.forEach(function (letter) {
+    if (!alphabetLow.includes(letter) && !alphabetUpp.includes(letter)) {
+      hashed.push(letter);
+    } else if (letter === letter.toUpperCase()) {
+      var currIndex = alphabetUpp.indexOf(letter) - 13;
+
+      if (currIndex < 0) {
+        currIndex = 26 - Math.abs(currIndex);
+      }
+
+      hashed.push(alphabetUpp[currIndex]);
+    } else {
+      var _currIndex = alphabetLow.indexOf(letter) - 13;
+
+      if (_currIndex < 0) {
+        _currIndex = 26 - Math.abs(_currIndex);
+      }
+
+      hashed.push(alphabetLow[_currIndex]);
+    }
+  });
+  return hashed.join('');
+};
+
+var _default = Decryption;
+exports.default = _default;
+},{}],"db/language.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var language = {
+  english: {
+    title: '“Caesar cipher”',
+    description: 'Caesar Cipher A shift cipher is a simple and popular data encryption technique. It is based on a shift of letters in the Alphabet currently uses a shift of 13 letters - ROT13',
+    warning: 'Attention! encrypting only encrypted Latin alphabet characters!',
+    titleEnc: 'Encryption',
+    labelEnc: 'Enter data',
+    btnEnc: 'Encryption',
+    outEnc: 'Encrypted data:',
+    titleDec: 'Decryption',
+    labelDec: 'Enter encrypted data:',
+    btnDec: 'Decryption',
+    outDec: 'Decrypted data:'
+  },
+  polish: {
+    title: '“Szyfr Cezara”',
+    description: 'Szyfr Cezara szyfr przesuwający to prosta i popularna technika szyfrowania danych. Opiera się o przesunięcie liter w Alfabecie obecnie używa się przesunięcia o 13 liter - ROT13',
+    warning: 'Uwaga! zaszyfrowaniu zostają poddane tylko znaki alfabetu łacińskiego!',
+    titleEnc: 'Szyfrowanie',
+    labelEnc: 'Wprowadz dane',
+    btnEnc: 'Szyfrowanie',
+    outEnc: 'Zaszyfrowane Dane:',
+    titleDec: 'Deszyfrowanie',
+    labelDec: 'Wprowadz zaszyfrowane dane:',
+    btnDec: 'Deszyfrowanie',
+    outDec: 'Oszyfrowane dane:'
+  }
+};
+var _default = language;
+exports.default = _default;
+},{}],"index.js":[function(require,module,exports) {
+"use strict";
+
+var _Encryption = _interopRequireDefault(require("./logic/Encryption.js"));
+
+var _Decryption = _interopRequireDefault(require("./logic/Decryption.js"));
+
+var _language = _interopRequireDefault(require("./db/language.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var nameEncrypt = document.getElementById('nameEncrypt');
+var outEncrypt = document.getElementById('outEncrypt');
+var formEncrypt = document.getElementById('formEncrypt');
+var boxEncrypt = document.getElementById('boxEncrypt');
+var nameDecrpt = document.getElementById('nameDecrpt');
+var outDecrpt = document.getElementById('outDecrpt');
+var formDecrpt = document.getElementById('formDecrpt');
+var boxDecrpt = document.getElementById('boxDecrpt');
+var link = document.querySelectorAll('a');
+var langE = document.querySelector('.langWrap');
+var title = document.querySelector('.title');
+var description = document.querySelector('.description');
+var warning = document.querySelector('.warning');
+var labelEncrypt = document.querySelector('.labelEncrypt');
+var titleEnrypt = document.querySelector('.titleEnrypt');
+var btnEncrypt = document.querySelector('.btnEncrypt');
+var labelOutEncrypt = document.querySelector('.labelOutEncrypt');
+var titleDecrypt = document.querySelector('.titleDecrypt');
+var labelDecrypt = document.querySelector('.labelDecrypt');
+var btnDecrypt = document.querySelector('.btnDecrypt');
+var labelOutDecrypt = document.querySelector('.labelOutDecrypt');
+link.forEach(function (el) {
+  el.addEventListener('click', function () {
+    langE.querySelector('.active').classList.remove('active');
+    el.classList.add('active');
+    var attr = el.getAttribute('language');
+    title.textContent = _language.default[attr].title;
+    description.textContent = _language.default[attr].description;
+    warning.textContent = _language.default[attr].warning;
+    titleEnrypt.textContent = _language.default[attr].titleEnc;
+    labelEncrypt.textContent = _language.default[attr].labelEnc;
+    btnEncrypt.textContent = _language.default[attr].btnEnc;
+    labelOutEncrypt.textContent = _language.default[attr].outEnc;
+    titleDecrypt.textContent = _language.default[attr].titleDec;
+    labelDecrypt.textContent = _language.default[attr].labelDec;
+    btnDecrypt.textContent = _language.default[attr].btnDec;
+    labelOutDecrypt.textContent = _language.default[attr].outDec;
+  });
+});
+formEncrypt.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var output = (0, _Encryption.default)(nameEncrypt.value);
+  outEncrypt.innerHTML = output;
+
+  if (nameEncrypt.value === '') {
+    boxEncrypt.style.display = 'none';
+  } else {
+    boxEncrypt.style.display = 'block';
+  }
+});
+formDecrpt.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var output = (0, _Decryption.default)(nameDecrpt.value);
+  outDecrpt.innerHTML = output;
+
+  if (nameDecrpt.value === '') {
+    boxDecrpt.style.display = 'none';
+  } else {
+    boxDecrpt.style.display = 'block';
+  }
+});
+},{"./logic/Encryption.js":"logic/Encryption.js","./logic/Decryption.js":"logic/Decryption.js","./db/language.js":"db/language.js"}],"../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -197,7 +364,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52672" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54112" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -373,5 +540,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","modules.js"], null)
-//# sourceMappingURL=/modules.3d28518f.js.map
+},{}]},{},["../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+//# sourceMappingURL=/lekcja1.e31bb0bc.js.map
