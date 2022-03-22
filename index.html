@@ -14,26 +14,52 @@
     />
   </head>
   <body style="background-color: grey">
+    <!-- HEADER -->
+
     <div class="container">
-      <h1>“Szyfr Cezara”</h1>
+      <h3>“Szyfr Cezara”</h3>
       <p>
         Szyfr Cezara szyfr przesuwający to prosta i popularna technika
         szyfrowania danych. Opiera się o przesunięcie liter w Alfabecie obecnie
         używa się przesunięcia o 13 liter - ROT13
       </p>
-      <form id="form" action="/" method="GET">
+      <hr />
+
+      <!-- SZYFROWANIE -->
+
+      <h5>Szyfrowanie</h5>
+      <form id="formEncrypt" action="/" method="GET">
         <div class="mb-3">
-          <label for="name" class="form-label">Wprowadz dane</label>
-          <textarea class="form-control" id="name" rows="3"></textarea>
+          <label for="nameEncrypt" class="form-label">Wprowadz dane</label>
+          <textarea class="form-control" id="nameEncrypt" rows="3"></textarea>
         </div>
 
-        <button class="btn btn-success" type="submit">ENCYPRET</button>
+        <button class="btn btn-success" type="submit">Zaszyfrowane</button>
       </form>
-      <!-- <p class=""></p> -->
-      <!-- <p class="h1" ></p> -->
-      <div id="box" style="display: none">
-        <p>Zaszyfrowane Dane do zaszyfrowania</p>
-        <div id="out" class="alert alert-success" role="alert"></div>
+
+      <div id="boxEncrypt" style="display: none">
+        <h5>Zaszyfrowane Dane:</h5>
+        <div id="outEncrypt" class="alert alert-success" role="alert"></div>
+      </div>
+
+      <hr />
+      <!-- DESZYFROWANIE -->
+
+      <h5>Deszyfrowanie</h5>
+      <form id="formDecrpt" action="/" method="GET">
+        <div class="mb-3">
+          <label for="nameDecrpt" class="form-label"
+            >Wprowadz zaszyfrowane dane</label
+          >
+          <textarea class="form-control" id="nameDecrpt" rows="3"></textarea>
+        </div>
+
+        <button class="btn btn-success" type="submit">Deszyfrowanie</button>
+      </form>
+
+      <div id="boxDecrpt" style="display: none">
+        <h5>Oszyfrowane dane:</h5>
+        <div id="outDecrpt" class="alert alert-success" role="alert"></div>
       </div>
     </div>
   </body>

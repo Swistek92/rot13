@@ -1,4 +1,4 @@
-const caesar13 = (input) => {
+const Decryption = (input) => {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   const alphabetLow = [...alphabet];
   const alphabetUpp = [...alphabet.toUpperCase()];
@@ -9,15 +9,15 @@ const caesar13 = (input) => {
     if (letter.match(/[0-9]/g)) {
       hashed.push(letter);
     } else if (letter === letter.toUpperCase()) {
-      let currIndex = alphabetUpp.indexOf(letter) + 13;
-      if (currIndex > 26) {
-        currIndex = currIndex - 26;
+      let currIndex = alphabetUpp.indexOf(letter) - 13;
+      if (currIndex < 0) {
+        currIndex = 26 - Math.abs(currIndex);
       }
       hashed.push(alphabetUpp[currIndex]);
     } else {
-      let currIndex = alphabetLow.indexOf(letter) + 13;
-      if (currIndex > 26) {
-        currIndex = currIndex - 26;
+      let currIndex = alphabetLow.indexOf(letter) - 13;
+      if (currIndex < 0) {
+        currIndex = 26 - Math.abs(currIndex);
       }
       hashed.push(alphabetLow[currIndex]);
     }
@@ -25,4 +25,4 @@ const caesar13 = (input) => {
   return hashed.join('');
 };
 
-export default caesar13;
+export default Decryption;
