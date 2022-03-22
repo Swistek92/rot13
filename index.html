@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Szyfr Cezara</title>
     <script defer type="module" src="modules.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -23,6 +23,9 @@
         szyfrowania danych. Opiera się o przesunięcie liter w Alfabecie obecnie
         używa się przesunięcia o 13 liter - ROT13
       </p>
+      <p style="color: rgba(255, 0, 0, 0.438)">
+        Uwaga! zaszyfrowaniu zostają poddane tylko znaki alfabetu łacińskiego
+      </p>
       <hr />
 
       <!-- SZYFROWANIE -->
@@ -31,7 +34,12 @@
       <form id="formEncrypt" action="/" method="GET">
         <div class="mb-3">
           <label for="nameEncrypt" class="form-label">Wprowadz dane</label>
-          <textarea class="form-control" id="nameEncrypt" rows="3"></textarea>
+          <textarea
+            style="background-color: rgba(255, 255, 255, 0.671)"
+            class="form-control"
+            id="nameEncrypt"
+            rows="3"
+          ></textarea>
         </div>
 
         <button class="btn btn-success" type="submit">Zaszyfrowane</button>
@@ -39,7 +47,7 @@
 
       <div id="boxEncrypt" style="display: none">
         <h5>Zaszyfrowane Dane:</h5>
-        <div id="outEncrypt" class="alert alert-success" role="alert"></div>
+        <div id="outEncrypt" class="alert alert-secondary" role="alert"></div>
       </div>
 
       <hr />
@@ -51,7 +59,12 @@
           <label for="nameDecrpt" class="form-label"
             >Wprowadz zaszyfrowane dane</label
           >
-          <textarea class="form-control" id="nameDecrpt" rows="3"></textarea>
+          <textarea
+            style="background-color: rgba(255, 255, 255, 0.671)"
+            class="form-control"
+            id="nameDecrpt"
+            rows="3"
+          ></textarea>
         </div>
 
         <button class="btn btn-success" type="submit">Deszyfrowanie</button>
@@ -59,7 +72,7 @@
 
       <div id="boxDecrpt" style="display: none">
         <h5>Oszyfrowane dane:</h5>
-        <div id="outDecrpt" class="alert alert-success" role="alert"></div>
+        <div id="outDecrpt" class="alert alert-secondary" role="alert"></div>
       </div>
     </div>
   </body>
