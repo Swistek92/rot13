@@ -17,23 +17,29 @@
     <!-- HEADER -->
 
     <div class="container">
-      <h3>“Szyfr Cezara”</h3>
-      <p>
+      <div class="langWrap">
+        <a href="#" language="polish" class="active">POLISH</a>
+        <a href="#" language="english">ENGLISH</a>
+      </div>
+      <h3 class="title">“Szyfr Cezara”</h3>
+      <p class="description">
         Szyfr Cezara szyfr przesuwający to prosta i popularna technika
         szyfrowania danych. Opiera się o przesunięcie liter w Alfabecie obecnie
         używa się przesunięcia o 13 liter - ROT13
       </p>
-      <p style="color: rgba(255, 0, 0, 0.438)">
+      <p class="warning" style="color: rgb(78, 39, 39); font-weight: 500">
         Uwaga! zaszyfrowaniu zostają poddane tylko znaki alfabetu łacińskiego
       </p>
       <hr />
 
       <!-- SZYFROWANIE -->
 
-      <h5>Szyfrowanie</h5>
+      <h5 class="titleEnrypt">Szyfrowanie</h5>
       <form id="formEncrypt" action="/" method="GET">
         <div class="mb-3">
-          <label for="nameEncrypt" class="form-label">Wprowadz dane</label>
+          <label for="nameEncrypt" class="labelEncrypt form-label"
+            >Wprowadz dane</label
+          >
           <textarea
             style="background-color: rgba(255, 255, 255, 0.671)"
             class="form-control"
@@ -42,21 +48,23 @@
           ></textarea>
         </div>
 
-        <button class="btn btn-success" type="submit">Zaszyfrowane</button>
+        <button class="btn btn-success btnEncrypt" type="submit">
+          Szyfrowanie
+        </button>
       </form>
 
       <div id="boxEncrypt" style="display: none">
-        <h5>Zaszyfrowane Dane:</h5>
+        <h5 class="labelOutEncrypt">Zaszyfrowane Dane:</h5>
         <div id="outEncrypt" class="alert alert-secondary" role="alert"></div>
       </div>
 
       <hr />
       <!-- DESZYFROWANIE -->
 
-      <h5>Deszyfrowanie</h5>
+      <h5 class="titleDecrypt">Deszyfrowanie</h5>
       <form id="formDecrpt" action="/" method="GET">
         <div class="mb-3">
-          <label for="nameDecrpt" class="form-label"
+          <label for="nameDecrpt" class="form-label labelDecrypt"
             >Wprowadz zaszyfrowane dane</label
           >
           <textarea
@@ -67,11 +75,13 @@
           ></textarea>
         </div>
 
-        <button class="btn btn-success" type="submit">Deszyfrowanie</button>
+        <button class="btn btn-success btnDecrypt" type="submit">
+          Deszyfrowanie
+        </button>
       </form>
 
       <div id="boxDecrpt" style="display: none">
-        <h5>Oszyfrowane dane:</h5>
+        <h5 class="labelOutDecrypt">Oszyfrowane dane:</h5>
         <div id="outDecrpt" class="alert alert-secondary" role="alert"></div>
       </div>
     </div>
